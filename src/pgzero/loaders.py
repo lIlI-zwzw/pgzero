@@ -288,4 +288,4 @@ def getfont(
     return font
 
 
-ptext.getfont = getfont
+# ptext.getfont = getfont
