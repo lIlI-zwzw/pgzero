@@ -25,12 +25,9 @@ def make_color(arg):
 class SurfacePainter:
     """Interface to pygame.draw that is bound to a surface."""
 
-    def __init__(self, screen):
-        self._screen = screen
+    def __init__(self, surf):
+        self._surf = surf
 
-    @property
-    def _surf(self):
-        return self._screen.surface
 
     def line(self, start, end, color, width=1):
         """Draw a line from start to end."""
@@ -53,7 +50,7 @@ class SurfacePainter:
         try:
             iter(points)
         except TypeError:
-            raise TypeError("screen.draw.filled_polygon() requires an iterable of points to draw") from None # noqa
+            raise TypeError("polygon() requires an iterable of points to draw") from None # noqa
         points = [round_pos(point) for point in points]
         pygame.draw.polygon(self._surf, make_color(color), points, 1)
 
@@ -62,14 +59,14 @@ class SurfacePainter:
         try:
             iter(points)
         except TypeError:
-            raise TypeError("screen.draw.filled_polygon() requires an iterable of points to draw") from None # noqa
+            raise TypeError("filled_polygon() requires an iterable of points to draw") from None # noqa
         points = [round_pos(point) for point in points]
         pygame.draw.polygon(self._surf, make_color(color), points, 0)
 
     def rect(self, rect, color, width=1):
         """Draw a rectangle."""
         if not isinstance(rect, RECT_CLASSES):
-            raise TypeError("screen.draw.rect() requires a rect to draw")
+            raise TypeError("rect() requires a rect to draw")
 
         if width <= 1:
             pygame.draw.rect(self._surf, make_color(color), rect, width)
@@ -100,11 +97,11 @@ class SurfacePainter:
         pygame.draw.rect(self._surf, make_color(color), rect, 0)
 
     def text(self, *args, **kwargs):
-        """Draw text to the screen."""
+        """Draw text to the surface."""
         # FIXME: expose ptext parameters, for autocompletion and autodoc
         ptext.draw(*args, surf=self._surf, **kwargs)
 
     def textbox(self, *args, **kwargs):
-        """Draw text to the screen, wrapped to fit a box"""
+        """Draw text to the surface, wrapped to fit a box"""
         # FIXME: expose ptext parameters, for autocompletion and autodoc
         ptext.drawbox(*args, surf=self._surf, **kwargs)
