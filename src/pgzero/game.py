@@ -124,6 +124,7 @@ class PGZeroGame:
         pygame.MOUSEBUTTONDOWN: 'on_mouse_down',
         pygame.MOUSEBUTTONUP: 'on_mouse_up',
         pygame.MOUSEMOTION: 'on_mouse_move',
+        pygame.MOUSEWHEEL: 'on_mouse_wheel',
         pygame.KEYDOWN: 'on_key_down',
         pygame.KEYUP: 'on_key_up',
         constants.MUSIC_END: 'on_music_end'
