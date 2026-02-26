@@ -5,7 +5,7 @@ from . import game
 from . import loaders
 from . import rect
 from . import spellcheck
-
+from .surface_painter import SurfacePainter
 
 ANCHORS = {
     'x': {
@@ -363,3 +363,8 @@ class Actor:
 
     def unload_image(self):
         loaders.images.unload(self._image_name)
+
+
+    @property
+    def paint(self):
+        return SurfacePainter(self.surface)
