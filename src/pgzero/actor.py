@@ -150,10 +150,12 @@ class Actor:
         return iter(self._rect)
 
     def __repr__(self):
-        return '<{} {!r} pos={!r}>'.format(
+        return '<{} {!r} pos={!r} width={} height={}>'.format(
             type(self).__name__,
             self._image_name,
-            self.pos
+            self.pos,
+            self.width,
+            self.height
         )
 
     def __dir__(self):

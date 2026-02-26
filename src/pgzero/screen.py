@@ -74,7 +74,7 @@ class Screen:
 
     @property
     def draw(self):
-        return SurfacePainter(self)
+        return SurfacePainter(self.surface)
 
     def __repr__(self):
         return "<Screen width={} height={}>".format(self.width, self.height)
